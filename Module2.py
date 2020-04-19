@@ -207,3 +207,21 @@ performance_df['Selection_Sort_Time'] = performance_df['Selection_Sort_Time'].as
 performance_df['Length_of_Array'] = performance_df['Length_of_Array'].astype(int)
 
 performance_df = performance_df.sort_values(by = 'Selection_Sort_Time')
+
+# Graph Results
+
+plt.rcParams['figure.figsize'] = (15,10)
+
+fig, ax = plt.subplots()
+
+colors = {'integer':'red', 'float':'blue', 'string5':'green', 'string15':'orange'}
+
+ax.scatter(performance_df['Length_of_Array'], 
+           performance_df['Selection_Sort_Time'], 
+           c = performance_df['Data_Type'].apply(lambda x: colors[x]))
+
+plt.title('Array Size vs Selection Sort Time')
+plt.xlabel('Array Size')
+plt.ylabel('Search Time (milliseconds)')
+
+plt.show()
