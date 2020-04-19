@@ -177,13 +177,33 @@ selection_sort_time_string15_5 = timeit.timeit("selectionSort(random_array_strin
                                                setup = "from __main__ import findSmallest, selectionSort, random_array_string15_5",
                                                number = 10000)/1000
 
+# Create dataframe of performance results
 
+d = np.array([[array_lengths[0], 'integer', selection_sort_time_integers_1],
+              [array_lengths[1], 'integer', selection_sort_time_integers_2],
+              [array_lengths[2], 'integer', selection_sort_time_integers_3],
+              [array_lengths[3], 'integer', selection_sort_time_integers_4],
+              [array_lengths[4], 'integer', selection_sort_time_integers_5],
+              [array_lengths[5], 'float', selection_sort_time_float_1],
+              [array_lengths[6], 'float', selection_sort_time_float_2],
+              [array_lengths[7], 'float', selection_sort_time_float_3],
+              [array_lengths[8], 'float', selection_sort_time_float_4],
+              [array_lengths[9], 'float', selection_sort_time_float_5],
+              [array_lengths[10], 'string5', selection_sort_time_string5_1],
+              [array_lengths[11], 'string5', selection_sort_time_string5_2],
+              [array_lengths[12], 'string5', selection_sort_time_string5_3],
+              [array_lengths[13], 'string5', selection_sort_time_string5_4],
+              [array_lengths[14], 'string5', selection_sort_time_string5_5],
+              [array_lengths[15], 'string15', selection_sort_time_string15_1],
+              [array_lengths[16], 'string15', selection_sort_time_string15_2],
+              [array_lengths[17], 'string15', selection_sort_time_string15_3],
+              [array_lengths[18], 'string15', selection_sort_time_string15_4],
+              [array_lengths[19], 'string15', selection_sort_time_string15_5]])
 
+cols = ['Length_of_Array', 'Data_Type', 'Selection_Sort_Time']
 
+performance_df = pd.DataFrame(data = d, columns = cols)
+performance_df['Selection_Sort_Time'] = performance_df['Selection_Sort_Time'].astype(float)
+performance_df['Length_of_Array'] = performance_df['Length_of_Array'].astype(int)
 
-
-
-
-
-
-
+performance_df = performance_df.sort_values(by = 'Selection_Sort_Time')
